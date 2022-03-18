@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دسته بندی</title>
+    <link rel="stylesheet" href="./build/tailwind.css">
+</head>
+<body class="bg-stone-100">
+          <!-- Header - Mobile - Logo -->
+    <div class="flex md:hidden justify-between items-center mt-10 mb-9 px-4">
+        <div class="w-12 h-10">
+            <img src="/assets/images/Logo.png" alt="logo">
+        </div>
+        <div class="text-slate-800 font-bold">دسته بندی</div>
+        <div class="w-7 h-7 rounded shadow-lg flex items-center justify-center">
+            <img class="w-5 h-5 text-slate-800" src="/assets/images/vuesax-linear-search-normal.svg">
+        </div>
+    </div>
+        <!-- Main Section -->
+        <div class="flex flex-col px-4 items-center pb-16">
+            <!-- items -->
+            <div class="flex items-center gap-x-1 w-full rounded-lg mb-6">
+                <div class="flex w-2/5 h-full flex-col gap-y-4 pt-5 overflow-hidden items-center rounded-xl bg-gray-300">
+                    <span class="text-slate-600 text-base font-bold">تلفن همراه</span>
+                    <img src="/assets/images/image 16.png">
+                </div>
+                <div class="flex flex-col items-center gap-y-5 w-3/5">
+                    <div class="w-full h-full flex justify-end">
+                        <span class="text-orange-500 text-sm font-medium ml-7">مشاهده همه</span>
+                    </div>
+                    <div class="flex w-full items-center justify-center gap-x-1">
+                        <div class="flex flex-col gap-y-6 w-full h-full py-3 px-2 items-center rounded-xl bg-white shadow-lg">
+                            <img class="w-2/3" src="/assets/images/image 21.png">
+                            <span class="font-medium text-sm text-slate-600">اپل</span>
+                        </div>
+                        <div class="flex flex-col gap-y-6 w-full h-full py-3 px-2 items-center rounded-xl bg-white shadow-lg">
+                            <img class="w-2/3" src="/assets/images/image 23.png">
+                            <span class="font-medium text-sm text-slate-600">شیائومی</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr /> 
+             <!-- items -->
+             <div class="flex items-center gap-x-1 w-full rounded-lg mb-6 mt-6">
+                <div class="flex w-2/5 h-full flex-col gap-y-4 pt-5 overflow-hidden items-center rounded-xl bg-gray-300">
+                    <span class="text-slate-600 text-base font-bold">لب تاپ</span>
+                    <img src="/assets/images/lap top.png">
+                </div>
+                <div class="flex flex-col items-center gap-y-5 w-3/5">
+                    <div class="w-full h-full flex justify-end">
+                        <span class="text-orange-500 text-sm font-medium ml-7">مشاهده همه</span>
+                    </div>
+                    <div class="flex w-full items-center justify-center gap-x-1">
+                        <div class="flex flex-col gap-y-6 w-1/2 h-full py-3 px-2 items-center rounded-xl bg-white shadow-lg">
+                            <img class="w-full" src="/assets/images/cate brand.png">
+                            <span class="font-medium text-sm text-slate-600">ایسوس</span>
+                        </div>
+                        <div class="flex flex-col gap-y-6 w-1/2 h-full py-3 px-2 items-center rounded-xl bg-white shadow-lg">
+                            <img class="w-full" src="/assets/images/lenovo.png">
+                            <span class="font-medium text-sm text-slate-600">لنووو</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <!-- items -->
+             <div class="flex items-center gap-x-1 w-full rounded-lg mb-6 mt-6">
+                <div class="flex w-2/5 h-full flex-col gap-y-4 pt-5 overflow-hidden items-center rounded-xl bg-gray-300">
+                    <span class="text-slate-600 text-base font-bold">ساعت هوشمند</span>
+                    <img src="/assets/images/cate watch.png">
+                </div>
+                <div class="flex flex-col items-center gap-y-5 w-3/5">
+                    <div class="w-full h-full flex justify-end">
+                        <span class="text-orange-500 text-sm font-medium ml-7">مشاهده همه</span>
+                    </div>
+                    <div class="flex w-full items-center justify-center gap-x-1">
+                        <div class="flex flex-col gap-y-6 w-full h-full py-3 px-2 items-center rounded-xl bg-white shadow-lg">
+                            <img class="w-2/3" src="/assets/images/image 23.png">
+                            <span class="font-medium text-sm text-slate-600">شیائومی</span>
+                        </div>
+                        <div class="flex flex-col gap-y-6 w-full h-full py-3 px-2 items-center rounded-xl bg-white shadow-lg">
+                            <img class="w-2/3" src="/assets/images/image 21.png">
+                            <span class="font-medium text-sm text-slate-600">اپل</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Navbar Mobile -->
+    <div x-data="{select : 2}" class="flex items-center justify-around w-full py-4 h-16 bg-white fixed right-0 left-0 bottom-0 rounded-t-md md:hidden shadow-[0px_-20px_25px_rgba(0,0,0,0.1)]">
+        <div @click="select = 1" >
+            <a href="/public/index.html" class="flex items-center justify-center text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" :class="select === 1 ? 'text-slate-800' : ''" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                  </svg>
+                  <span :class="select === 1 ? 'text-slate-800' : ''" x-show="select === 1" class="mr-2 font-bold text-lg">خانه</span>
+            </a>
+        </div>
+        <div @click="select = 2" >
+            <a href="/public/category.html" class="flex items-center justify-center text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" :class="select === 2 ? 'text-slate-800' : ''" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                  </svg>
+                  <span :class="select === 2 ? 'text-slate-800' : ''" x-show="select === 2" class="mr-2 font-bold text-lg">دسته بندی</span>
+            </a>
+        </div>
+        <div @click="select = 3">
+            <a href="/public/basket.html" class="flex items-center justify-center text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" :class="select === 3 ? 'text-slate-800' : ''" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
+                  </svg>
+                  <span :class="select === 3 ? 'text-slate-800' : ''" x-show="select === 3" class="mr-2 font-bold text-lg">سبد خرید</span>
+            </a>
+        </div>
+        <div @click="select = 4" class="flex items-center justify-center text-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" :class="select === 4 ? 'text-slate-800' : ''" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+              </svg>
+              <span :class="select === 4 ? 'text-slate-800' : ''" x-show="select === 4" class="mr-2 font-bold text-lg">علاقه مندی</span>
+        </div>
+    </div>
+
+    <script src="./js/alpine.js"></script>
+</body>
+</html>

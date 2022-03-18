@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>digitize app</title>
+    <link rel="stylesheet" href="./build/tailwind.css">
+</head>
+<body x-data="{filter : false}" class="bg-stone-100">
+    <!-- Header Desktop -->
+    <header class="hidden md:block w-full bg-white mb-5 shadow-lg sticky top-0 left-0 right-0 z-20">
+        <div class="flex container max-w-screen-2xl mx-auto justify-between items-center py-4 px-6">
+            <div class="w-2/3 flex items-center">
+                <img class="h-6" src="/assets/images/Logo-Desktop.png" alt="Logo">
+                <nav class="flex gap-x-2 mr-2">
+                    <li class="list-none transition-all duration-300 text-slate-800 hover:text-orange-400 text-sm lg:text-base">
+                        <a class="cursor-pointer font-medium block py-2 px-4" href="#">خانه</a>
+                    </li>
+                    <li class="list-none transition-all duration-300 text-slate-800 hover:text-orange-400 text-sm lg:text-base">
+                        <a class="cursor-pointer font-medium block py-2 px-4" href="#">تلفن همراه</a>
+                        </li>
+                    <li class="list-none transition-all duration-300 text-slate-800 hover:text-orange-400 text-sm lg:text-base">
+                        <a class="cursor-pointer font-medium block py-2 px-4" href="#">لب تاپ</a>
+                       </li>
+                    <li class="list-none transition-all duration-300 text-slate-800 hover:text-orange-400 text-sm lg:text-base">
+                        <a class="cursor-pointer font-medium block py-2 px-4" href="#">ساعت هوشمند</a>
+                        </li>
+                </nav>
+            </div>
+            <div class="w-1/3 flex items-center justify-center bg-stone-100 rounded gap-x-2 px-1 py-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <input class="w-full h-full bg-transparent focus:outline-none border-none focus:border-none bottom-0 pr-3 placeholder:text-xs lg:placeholder:text-base" type="text" placeholder="جستجوی نام محصول،نام برند،نام مدل و...">
+            </div>
+        </div>
+    </header>
+    <!-- Header - Mobile - Logo -->
+    <div class="flex md:hidden justify-between items-center mt-10 px-4">
+        <div class="w-12 h-10">
+            <img src="/assets/images/Logo.png" alt="logo">
+        </div>
+        <div class="text-slate-800 font-bold">ساعت هوشمند</div>
+        <div class="w-7 h-7 rounded shadow-lg flex items-center justify-center">
+            <img class="w-5 h-5 text-slate-800" src="/assets/images/vuesax-linear-search-normal.svg">
+        </div>
+    </div>
+    <!-- Filter - Sort -->
+    <div class="flex md:hidden items-center justify-center gap-3 mt-4 px-4">
+        <div class="flex bg-white items-center justify-start gap-2 sm:gap-4 w-1/2 p-2 cursor-pointer hover:opacity-70">
+            <div class="flex items-center justify-center">
+                <img class="w-6 h-6" src="/assets/images/vuesax-twotone-vuesax-twotone-sort.svg" alt="Sort">
+                <img class="w-4 h-4" src="/assets/images/vuesax-outline-arrow-down.svg" alt="arrow">
+            </div>
+            <p class="font-medium text-sm text-slate-800">محبوب ترین</p>
+        </div>
+        <div @click="filter = !filter" class="flex bg-white items-center justify-start gap-2 sm:gap-4 w-1/2 p-2 cursor-pointer hover:opacity-70">
+            <img class="h-6 w-6" src="/assets/images/vuesax-twotone-vuesax-twotone-filter.svg" alt="filter">
+            <p class="font-medium text-sm text-slate-800">فیلتر برند: اپل</p>
+        </div>
+    </div>
+    <!-- Content -->
+    <div class="grid container max-w-screen-2xl mx-auto grid-cols-12 grid-rows-[55px_minmax(500px,_1fr)] gap-x-2 lg:gap-x-4 xl:gap-x-5 md:px-1 lg:p-x-4 xl:p-x-6">
+        <!-- Side bar -->
+        <div class="hidden md:block col-span-3 row-span-2">
+            <div class="flex flex-col max-h-[calc(100vh_-_140px)] sticky z-10 top-28 overflow-auto pt-6 pr-6 pb-11 bg-white rounded-xl shadow-md">
+                <!-- Grouping -->
+                <div class="flex flex-col gap-y-4">
+                    <p class="text-orange-400 text-xl font-bold">دسته بندی</p>
+                    <div x-data="{active : 1 , activeClass : 'text-slate-800'}" class="flex flex-col gap-y-5">
+                        <div @click="active = 1" class="flex items-center gap-x-1 cursor-pointer relative text-gray-400 ">
+                            <svg xmlns="http://www.w3.org/2000/svg"  :class="active === 1 ? activeClass : ''"  class="h-4 w-4 z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                              </svg>
+                            <p  :class="active === 1 ? activeClass : ''" class="text-base lg:text-lg">تلفن همراه</p>
+                            <span x-show="active === 1" class="w-4 h-4 rounded-full bg-gray-200 z-0 absolute top-0 -right-1"></span>
+                        </div>
+                        <div @click="active = 2" class="flex items-center gap-x-1 cursor-pointer text-gray-400 relative">
+                            <svg xmlns="http://www.w3.org/2000/svg"  :class="active === 2 ? activeClass : ''"  class="h-4 w-4 z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                              </svg>
+                            <p :class="active === 2 ? activeClass : ''" class="text-base lg:text-lg">لب تاپ</p>
+                            <span x-show="active === 2" class="w-4 h-4 rounded-full bg-gray-200 z-0 absolute top-0 -right-1"></span>
+                        </div>
+                        <div @click="active = 3" class="flex items-center gap-x-1 cursor-pointer text-gray-400 relative">       
+                            <svg xmlns="http://www.w3.org/2000/svg"  :class="active === 3 ? activeClass : ''"  class="h-4 w-4 z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                              </svg>                
+                            <p  :class="active === 3 ? activeClass : ''"  class="text-base lg:text-lg">ساعت هوشمند</p>
+                            <span x-show="active === 3" class="w-4 h-4 rounded-full bg-gray-200 z-0 absolute top-0 -right-1"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- "Filter" "Range - Price" - "Brand" -->
+                <div class="flex flex-col mt-7 gap-y-8 ml-5 lg:ml-10">
+                    <p class="text-orange-400 text-xl font-bold">فیلتر</p>
+                    <!-- Brand Filter -->
+                    <div x-data="{open1 : false}" class="flex flex-col gap-y-4">
+                        <div @click="open1 = !open1" class="flex justify-between cursor-pointer items-center">
+                            <div class="flex items-center gap-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                                  </svg>
+                                <p class="text-slate-800 text-base lg:text-lg">برند محصول</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" :class="open1 === true ? 'rotate-180' : ''" class="h-5 w-5 transition-all duration-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                              </svg>
+                        </div>
+                        <div x-show="open1 === true" class="flex flex-col gap-y-3">
+                            <div class="flex gap-x-2 items-center">
+                                <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="apple">
+                                <label class="text-slate-800 text-base lg:text-lg" for="apple">اپل</label>
+                            </div>
+                            <div class="flex gap-x-2 items-center">
+                                <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="samsung">
+                                <label class="text-slate-800 text-base lg:text-lg" for="samsung">سامسونگ</label>
+                            </div>
+                            <div class="flex gap-x-2 items-center">
+                                <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="xiaumi">
+                                <label class="text-slate-800 text-base lg:text-lg" for="xiaumi">شیائومی</label>
+                            </div>
+                            <div class="flex gap-x-2 items-center">
+                                <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="huawie">
+                                <label class="text-slate-800 text-base lg:text-lg" for="huawie">هوآوی</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Color Filter -->
+                    <div x-data="{open2 : false}" class="flex flex-col gap-y-4">
+                        <div @click="open2 = !open2" class="flex justify-between cursor-pointer items-center">
+                            <div class="flex items-center gap-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                                  </svg>
+                                <p class="text-slate-800 text-base lg:text-lg">رنگ محصول</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" :class="open2 === true ? 'rotate-180' : ''" class="h-5 w-5 transition-all duration-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                              </svg>
+                        </div>
+                        <div x-show="open2 === true" class="flex flex-col gap-y-3">
+                            <div class="flex gap-x-2 items-center">
+                                <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="red">
+                                <label class="text-slate-800 text-base lg:text-lg" for="red">قرمز</label>
+                            </div>
+                            <div class="flex gap-x-2 items-center">
+                                <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="blue">
+                                <label class="text-slate-800 text-base lg:text-lg" for="blue">آبی</label>
+                            </div>
+                            <div class="flex gap-x-2 items-center">
+                                <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="yellow">
+                                <label class="text-slate-800 text-base lg:text-lg" for="yellow">زرد</label>
+                            </div>
+                            <div class="flex gap-x-2 items-center">
+                                <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="green">
+                                <label class="text-slate-800 text-base lg:text-lg" for="green">سبز</label>
+                            </div>
+                            <div class="flex gap-x-2 items-center">
+                                <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="perple">
+                                <label class="text-slate-800 text-base lg:text-lg" for="perple">بنفش</label>
+                            </div>
+                            <div class="flex gap-x-2 items-center">
+                                <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="pink">
+                                <label class="text-slate-800 text-base lg:text-lg" for="pink">صورتی</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Price Filter -->
+                    <div x-data="{open3 : false}" class="flex flex-col gap-y-4">
+                        <div @click="open3 = !open3" class="flex justify-between cursor-pointer items-center">
+                            <div class="flex items-center gap-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                  </svg>
+                                <p class="text-slate-800 text-base lg:text-lg">محدوده قیمت</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" :class="open3 === true ? 'rotate-180' : ''" class="h-5 w-5 transition-all duration-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                              </svg>
+                        </div>
+                        <div x-show="open3 === true" class="flex flex-col p-2 mt-4">
+                            <div>
+                                <input dir="ltr" class="w-full form-checkbox rounded focus:ring-orange-400 text-orange-400 h-1" type="range">
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-800 text-sm">۵,۹۳۵۰,۰۰۰</span>
+                                <span class="text-slate-800 text-sm">۱۲,۰۰۰,۰۰۰</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Ads Image -->
+            <div class="hidden lg:flex items-center justify-center flex-col w-3/4 h-48 bg-slate-800 rounded-xl mx-auto mt-4 px-2 py-4 relative overflow-hidden">
+                <span class="w-40 h-40 rounded-full border border-orange-600 absolute -top-20 -right-20"></span>
+                <div class="w-full flex justify-end items-center">
+                    <img class="w-20 h-20 -translate-y-2" src="/assets/images/image 10.png" alt="Ads">
+                </div>
+                <p class="text-gray-500 font-bold text-2xl xl:text-3xl">Smart Watch</p>
+                <p class="text-white font-bold text-xs xl:text-base">جدیدترین ساعت های هوشمند</p>
+            </div>
+        </div>
+        
+        <!-- Sort Section -->
+        <div class="hidden md:flex col-span-9 bg-white rounded-xl items-center px-1">
+            <div class="flex bg-orange-100 py-2 rounded ml-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" />
+                  </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 17l-4 4m0 0l-4-4m4 4V3" />
+                  </svg>
+            </div>
+            <ul x-data="{active : 1 , activeClass : 'text-slate-800 font-bold'}" class="flex gap-x-4 lg:gap-x-7 text-sm lg:text-base text-gray-400">
+                <li @click="active = 1" :class="active === 1 ? activeClass : ''" class="relative cursor-pointer">محبوب ترین محصول
+                    <span x-show="active === 1" class="w-1 h-1 rounded-full bg-red-500 absolute -left-1 -top-1"></span>
+                </li>
+                <li @click="active = 2" :class="active === 2 ? activeClass : ''" class="relative cursor-pointer">پر بازدید ترین محصول
+                    <span x-show="active === 2" class="w-1 h-1 rounded-full bg-red-500 absolute -left-1 -top-1"></span>
+                </li>
+                <li @click="active = 3" :class="active === 3 ? activeClass : ''" class="relative cursor-pointer">گران ترین محصول
+                    <span x-show="active === 3" class="w-1 h-1 rounded-full bg-red-500 absolute -left-1 -top-1"></span>
+                </li>
+                <li @click="active = 4" :class="active === 4 ? activeClass : ''" class="relative cursor-pointer">ارزان ترین محصول
+                    <span x-show="active === 4" class="w-1 h-1 rounded-full bg-red-500 absolute -left-1 -top-1"></span>
+                </li>
+            </ul>
+        </div>
+        <!-- Product Grid -->
+        <div class="col-span-12 md:col-span-9">
+            <!-- Product Section -->
+            <div id="productsElem" class="mt-4 px-1 grid grid-cols-2 gap-x-1 sm:gap-x-3 gap-y-8 md:grid-cols-3 lg:grid-cols-4 pb-16 md:pb-0">
+                <!-- Product Item In JavaScript-->
+            </div>
+             <!-- Number Pages -->
+    <div class="flex w-full items-center justify-center gap-x-4 mt-9">
+        <span class="cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+              </svg>
+        </span>
+        <span class="cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+        </span>
+        <span class="text-slate-800 cursor-pointer text-xl py-1 px-2 bg-orange-400 rounded">۱</span>
+        <span class="text-slate-800 cursor-pointer text-xl">۲</span>
+        <span class="text-slate-800 cursor-pointer text-xl">۳</span>
+        <span class="text-slate-800 cursor-pointer text-xl">۴</span>
+        <span class="text-slate-800 cursor-pointer text-xl">۵</span>
+        <span class="cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+        </span>
+        <span class="cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+              </svg>
+        </span>
+    </div>
+        </div>
+    </div>
+     <!-- "Filter" "Range - Price" - "Brand" Mobile-->
+     <div x-show="filter === true" class="flex md:hidden flex-col w-full mt-7 gap-y-8 ml-5 lg:ml-10 bg-white shadow-[0px_-20px_25px_rgba(0,0,0,0.1)] rounded-t-3xl fixed bottom-0 left-0 right-0 z-30 px-9 py-7 max-h-[calc(100vh_-_140px)] overflow-auto">
+        <p class="text-orange-400 text-xl font-bold w-2/3">فیلتر</p>
+        <!-- Brand Filter -->
+        <div x-data="{open1 : false}" class="flex flex-col gap-y-4 w-2/3">
+            <div @click="open1 = !open1" class="flex justify-between cursor-pointer items-center">
+                <div class="flex items-center gap-x-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                      </svg>
+                    <p class="text-slate-800 text-base lg:text-lg">برند محصول</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" :class="open1 === true ? 'rotate-180' : ''" class="h-5 w-5 transition-all duration-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+            </div>
+            <div x-show="open1 === true" class="flex flex-col gap-y-3">
+                <div class="flex gap-x-2 items-center">
+                    <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="apple">
+                    <label class="text-slate-800 text-base lg:text-lg" for="apple">اپل</label>
+                </div>
+                <div class="flex gap-x-2 items-center">
+                    <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="samsung">
+                    <label class="text-slate-800 text-base lg:text-lg" for="samsung">سامسونگ</label>
+                </div>
+                <div class="flex gap-x-2 items-center">
+                    <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="xiaumi">
+                    <label class="text-slate-800 text-base lg:text-lg" for="xiaumi">شیائومی</label>
+                </div>
+                <div class="flex gap-x-2 items-center">
+                    <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="huawie">
+                    <label class="text-slate-800 text-base lg:text-lg" for="huawie">هوآوی</label>
+                </div>
+            </div>
+        </div>
+        <!-- Color Filter -->
+        <div x-data="{open2 : false}" class="flex flex-col gap-y-4 w-2/3">
+            <div @click="open2 = !open2" class="flex justify-between cursor-pointer items-center">
+                <div class="flex items-center gap-x-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                      </svg>
+                    <p class="text-slate-800 text-base lg:text-lg">رنگ محصول</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" :class="open2 === true ? 'rotate-180' : ''" class="h-5 w-5 transition-all duration-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+            </div>
+            <div x-show="open2 === true" class="flex flex-col gap-y-3">
+                <div class="flex gap-x-2 items-center">
+                    <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="red">
+                    <label class="text-slate-800 text-base lg:text-lg" for="red">قرمز</label>
+                </div>
+                <div class="flex gap-x-2 items-center">
+                    <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="blue">
+                    <label class="text-slate-800 text-base lg:text-lg" for="blue">آبی</label>
+                </div>
+                <div class="flex gap-x-2 items-center">
+                    <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="yellow">
+                    <label class="text-slate-800 text-base lg:text-lg" for="yellow">زرد</label>
+                </div>
+                <div class="flex gap-x-2 items-center">
+                    <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="green">
+                    <label class="text-slate-800 text-base lg:text-lg" for="green">سبز</label>
+                </div>
+                <div class="flex gap-x-2 items-center">
+                    <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="perple">
+                    <label class="text-slate-800 text-base lg:text-lg" for="perple">بنفش</label>
+                </div>
+                <div class="flex gap-x-2 items-center">
+                    <input class="cursor-pointer form-checkbox rounded focus:ring-orange-400 text-orange-400" type="checkbox" id="pink">
+                    <label class="text-slate-800 text-base lg:text-lg" for="pink">صورتی</label>
+                </div>
+            </div>
+        </div>
+        <!-- Price Filter -->
+        <div x-data="{open3 : false}" class="flex flex-col gap-y-4 w-2/3 mb-10">
+            <div @click="open3 = !open3" class="flex justify-between cursor-pointer items-center">
+                <div class="flex items-center gap-x-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    <p class="text-slate-800 text-base lg:text-lg">محدوده قیمت</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" :class="open3 === true ? 'rotate-180' : ''" class="h-5 w-5 transition-all duration-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+            </div>
+            <div x-show="open3 === true" class="flex flex-col p-2 mt-4">
+                <div>
+                    <input dir="ltr" class="w-full form-checkbox rounded focus:ring-orange-400 text-orange-400 h-1" type="range">
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-800 text-sm">۵,۹۳۵۰,۰۰۰</span>
+                    <span class="text-slate-800 text-sm">۱۲,۰۰۰,۰۰۰</span>
+                </div>
+            </div>
+        </div>
+        <!-- buttons -->
+        <div class="flex w-full gap-x-6">
+            <button class="w-full h-12 text-lg font-medium text-white bg-orange-500 rounded-md">تایید</button>
+            <button @click="filter = false" class="w-full h-12 text-lg font-medium text-orange-500 bg-orange-100 rounded-md border border-orange-600">لغو فیلتر</button>
+        </div>
+    </div>
+      <!-- btn Close Filter -->
+      <button x-show="filter === true" @click="filter = false" class="md:hidden w-full h-full fixed top-0 left-0 bg-stone-100 opacity-60"></button>
+    <!-- Navbar Mobile -->
+    <div x-data="{select : 1}" class="flex items-center justify-around w-full py-4 h-16 bg-white fixed right-0 left-0 bottom-0 rounded-t-md md:hidden shadow-[0px_-20px_25px_rgba(0,0,0,0.1)]">
+                <div @click="select = 1" >
+                    <a href="/public/index.html" class="flex items-center justify-center text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" :class="select === 1 ? 'text-slate-800' : ''" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                          </svg>
+                          <span :class="select === 1 ? 'text-slate-800' : ''" x-show="select === 1" class="mr-2 font-bold text-lg">خانه</span>
+                    </a>
+                </div>
+                <div @click="select = 2" >
+                    <a href="/public/category.html" class="flex items-center justify-center text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" :class="select === 2 ? 'text-slate-800' : ''" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                          </svg>
+                          <span :class="select === 2 ? 'text-slate-800' : ''" x-show="select === 2" class="mr-2 font-bold text-lg">دسته بندی</span>
+                    </a>
+                </div>
+                <div @click="select = 3">
+                    <a href="/public/basket.html" class="flex items-center justify-center text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" :class="select === 3 ? 'text-slate-800' : ''" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
+                          </svg>
+                          <span :class="select === 3 ? 'text-slate-800' : ''" x-show="select === 3" class="mr-2 font-bold text-lg">سبد خرید</span>
+                    </a>
+                </div>
+                <div @click="select = 4" class="flex items-center justify-center text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" :class="select === 4 ? 'text-slate-800' : ''" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                      </svg>
+                      <span :class="select === 4 ? 'text-slate-800' : ''" x-show="select === 4" class="mr-2 font-bold text-lg">علاقه مندی</span>
+                </div>
+</div>
+    <!-- Footer - Desktop -->
+    <footer class="hidden container max-w-screen-2xl mx-auto md:grid grid-cols-12 py-11 px-11 bg-white mt-9 shadow-[0px_-20px_25px_rgba(0,0,0,0.1)] rounded-t-md">
+        <div class="col-span-9">
+            <div class="w-full grid grid-cols-6  grid-rows-[85px_minmax(250px,_1fr)]">
+                <div class="col-span-6 flex items-center">
+                    <img src="/assets/images/Logo-Desktop.png" alt="Logo">
+                </div>
+                <div class="col-span-4 ">
+                    <p class="text-slate-800 text-base">
+                        دیجی تایز عرضه کننده جدیدترین محصولات الکترونیک نظیر لب تاپ،گوشی هوشمند و ساعت هوشمند می باشد.
+                        دیجی تایز افتخار این را داشته که به <span class="text-orange-400">۲۲۳،۱۲۲ نفر</span> تا به اکنون خدمت رسانی داشته باشد.
+                    </p>
+                </div>
+                <div class="col-span-2 flex flex-col items-center gap-y-5">
+                   <p class="text-slate-800 font-bold text-lg cursor-pointer">محصولات</p>
+                    <p class="text-slate-800 hover:text-orange-400 text-lg cursor-pointer">تلفن همراه</p>
+                    <p class="text-slate-800 hover:text-orange-400 text-lg cursor-pointer">لب تاپ</p>
+                    <p class="text-slate-800 hover:text-orange-400 text-lg cursor-pointer">ساعت هوشمند</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-span-3  flex flex-col items-end">
+            <img class="w-44 h-44 lg:w-64 lg:h-64 mx-auto" src="/assets/images/image 14.png" alt="Addres">
+            <div class="mt-7 xl:ml-14">
+                <div class="flex items-center justify-end">
+                    <p class="text-base text-slate-800">۰۲۱-۱۲۳۴۵۶</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                      </svg>
+                </div>
+                <p class="text-base text-slate-800">info@digitize.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/alpine.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>
