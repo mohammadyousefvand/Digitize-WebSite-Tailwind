@@ -82,7 +82,7 @@ allProducts.forEach(item => {
     </div>
     <!-- Button Shop -->
     <div class="w-full flex items-center justify-center my-3 pt-2 border-t">
-        <button class="text-orange-400 text-sm md:text-base font-bold">مشاهده و سفارش</button>
+        <a href="../product-single.html"><button class="text-orange-400 text-sm md:text-base font-bold">مشاهده و سفارش</button></a>
     </div>
 </div>`
 
